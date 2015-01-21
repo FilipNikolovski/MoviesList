@@ -1,0 +1,17 @@
+
+#movies-list {
+    margin:25px;
+}
+.main {
+    padding:5px;
+    margin-top:40px;
+}
+.col-centered {
+    margin:0 auto;
+    float:none;
+}
+
+#movies-list img {
+    text-align:center;
+    font:24px Impact;   
+}
