@@ -28,23 +28,29 @@
             <h1>{{movieDetails.original_title}}</h1>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-3 col-xs-5">
+            <div class="col-lg-4 col-md-5 col-xs-10 col-sm-8">
                 <img class="img-responsive" src="{{movieDetails.poster_path}}" alt="{{movieDetails.original_title}}" />
             </div>
             <div class="col-lg-8 col-md-7 col-xs-7">
-                <div class="col-lg-4 col-md-7 col-xs-7"><h4>Status: <span class="label label-info">{{movieDetails.status}}</span></h4></div>
-                <div class="col-lg-4 col-md-7 col-xs-7"><h4>Release date: <span class="label label-success">{{movieDetails.release_date}}</span></h4></div>
-                <div class="col-lg-4 col-md-7 col-xs-7"><h4>Votes average: <span class="label label-danger">{{movieDetails.vote_average}}</span></h4></div>
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Status: <span class="label label-info">{{movieDetails.status}}</span></h4>
+                </div>
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Release date: <span class="label label-success">{{movieDetails.release_date}}</span></h4>
+                </div>
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Votes average: <span class="label label-danger">{{movieDetails.vote_average}}</span></h4>
+                </div>
             </div>
-            <div class="col-lg-8 col-md-7 col-xs-7">
+            <div class="col-lg-8 col-md-10 col-xs-12 col-sm-12">
                 <h4>Overview:</h4>
                 <div class="well">{{movieDetails.overview}}</div>
             </div>
             <div class="col-lg-8 col-md-7 col-xs-7">
-                <h4>Genres: <span class="label label-warning" ng-repeat="genre in movieDetails.genres" style="margin-right:5px;"> {{genre.name}}</span></h4>
+                <h4>Genres: <span class="label label-warning" ng-repeat="genre in movieDetails.genres" style="margin-right:5px;">{{genre.name}}</span></h4>
                 <span ng-if="movieDetails.genres.length == 0">There are no genres for this movie</span>
             </div>
-            <div class="col-lg-8 col-md-7 col-xs-7">
+            <div class="col-lg-8 col-md-10 col-xs-10 col-sm-10">
                 <h4>Reviews:</h4>
                 <div class="well" ng-if="movieReviews.results.length > 0">
                     <div class="row" ng-repeat="review in movieReviews.results">
