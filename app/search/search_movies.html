@@ -1,3 +1,67 @@
 <div id="searchMovies">
-    
+    <!-- Search movies -->
+    <div ng-hide="showDetails">
+        <div class="row form-group" style="margin-top:20px;">
+            <alert class="col-lg-6 col-md-6 col-sm-6 col-xs-11 col-lg-offset-3" ng-show="showAlert" type="danger" close="closeAlert()">Search field must contain atleast two characters.</alert>
+            <form ng-submit="searchMovies()" name="searchForm">
+                <div class="col-lg-4 col-md-3 col-sm-5 col-xs-11 col-lg-offset-3" style="margin-bottom:10px;"><input type="text" class="form-control" ng-model="search" name="search" placeholder="Search for movies.." required ng-trim="true" ng-minlength="2"></div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-11"><button type="submit" class="btn btn-success btn-block">Search</button></div>
+            </form>
+        </div>
+        <div class="row" id="movies-list">
+            <div class="col-lg-3 col-sm-4 col-md-4 col-xs-10" ng-repeat="movie in movies">
+                <a style="height:300px;" class="thumbnail" href="javascript:void(0);" ng-click="getDetails(movie.id)"><img style="max-height:100%;" ng-src="{{movie.poster_path}}" alt="{{movie.original_title}}" /></a>
+            </div>
+        </div>
+        <div class="row" ng-show="movies.length > 0">
+            <pager class="col-md-2 col-centered" total-items="totalItems" ng-model="currentPage" ng-change="changePage()"></pager>
+        </div>
+    </div>
+
+    <!-- Movie details -->
+    <div ng-show="showDetails" style="margin-top:30px;">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-4">
+                <button class="btn btn-primary" type="button" ng-click="goBack()">Go back</button>
+            </div>
+        </div>
+        <div class="row" style="margin-top:5px;margin-bottom:10px;">
+            <h1>{{movieDetails.original_title}}</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-xs-5">
+                <img class="img-responsive" src="{{movieDetails.poster_path}}" alt="{{movieDetails.original_title}}" />
+            </div>
+            <div class="col-lg-8 col-md-7 col-xs-7">
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Status: <span class="label label-info">{{movieDetails.status}}</span></h4>
+                </div>
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Release date: <span class="label label-success">{{movieDetails.release_date}}</span></h4>
+                </div>
+                <div class="col-lg-4 col-md-7 col-xs-7">
+                    <h4>Votes average: <span class="label label-danger">{{movieDetails.vote_average}}</span></h4>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7 col-xs-7">
+                <h4>Overview:</h4>
+                <div class="well">{{movieDetails.overview}}</div>
+            </div>
+            <div class="col-lg-8 col-md-7 col-xs-7">
+                <h4>Genres: <span class="label label-warning" ng-repeat="genre in movieDetails.genres" style="margin-right:5px;"> {{genre.name}}</span></h4>
+                <span ng-if="movieDetails.genres.length == 0">There are no genres for this movie</span>
+            </div>
+            <div class="col-lg-8 col-md-7 col-xs-7">
+                <h4>Reviews:</h4>
+                <div class="well" ng-if="movieReviews.results.length > 0">
+                    <div class="row" ng-repeat="review in movieReviews.results">
+                        <h4>Author: <span>{{review.author}}</span></h4>
+                        <span>{{review.content}}</span>
+                    </div>
+                    <pagination boundary-links="true" total-items="movieReviews.total_pages" ng-model="currentReviewPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="reviewPageChanged(movieReviews.id)"></pagination>
+                </div>
+                <span ng-if="movieReviews.results.length == 0">Currently there are no reviews for this movie.</span>
+            </div>
+        </div>
+    </div> 
 </div>

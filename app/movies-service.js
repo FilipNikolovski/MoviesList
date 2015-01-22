@@ -19,8 +19,8 @@ angular.module('myApp').factory("moviesService", ['$resource', function($resourc
                 });
         },
         search: function(query, page) {
-            return $resource('api.themoviedb.org/3/search/movie?api_key=:api_key&query=:query&page=:page', 
-                    {query: query, apiKey:'64c7f60079db50fedb132e2ebe1b24e3', page:page },                  
+            return $resource('http://api.themoviedb.org/3/search/movie?api_key=:api_key&query=:query&page=:page', 
+                    {query: query, api_key:'64c7f60079db50fedb132e2ebe1b24e3', page:page },                  
                     {query: { method: 'GET', isArray: false }
                 });
         }

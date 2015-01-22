@@ -12,10 +12,11 @@
                 <a style="height:300px;" class="thumbnail" href="javascript:void(0);" ng-click="getDetails(movie.id)"><img style="max-height:100%;" ng-src="{{movie.poster_path}}" alt="{{movie.original_title}}" /></a>
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-show="movies.length > 0">
             <pager class="col-md-2 col-centered" total-items="totalItems" ng-model="currentPage" ng-change="changePage()"></pager>
         </div>
     </div>
+    
     <!-- Movie details -->
     <div ng-show="showDetails" style="margin-top:30px;">
         <div class="row">
